@@ -30,12 +30,12 @@ def client_program():
     bt_client2, bt_address2 = bt_socket2.accept()
 
     # 신호등 서버
-    # hostMACAddress3 =  # 신호등 서버 MAC Address
-    # port3 = # port 번호
-    # bt_socket3 = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
-    # bt_socket3.bind((hostMACAddress3, port3))
-    # bt_socket3.listen(1)
-    # bt_client3, bt_address3 = bt_socket3.accept()
+    hostMACAddress3 =  # 신호등 서버 MAC Address
+    port3 = # port 번호
+    bt_socket3 = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+    bt_socket3.bind((hostMACAddress3, port3))
+    bt_socket3.listen(1)
+    bt_client3, bt_address3 = bt_socket3.accept()
     #############################################
 
     camera = camera_b3.Camera(main_socket.Get_Socket())
@@ -49,16 +49,16 @@ def client_program():
     while True:
         ###################################################
         #신호등 서버 연결
-        # traffic = bt_client3.recv(1)
-        # traffic = int(traffic.decode())
-        #
-        # while traffic == 1:
-        #     GPIO.output(in1, GPIO.LOW)
-        #     GPIO.output(in2, GPIO.LOW)
-        #     traffic = bt_client3.recv(1)
-        #     traffic = int(traffic.decode())
-        #     if traffic == 0:
-        #         break
+        traffic = bt_client3.recv(1)
+        traffic = int(traffic.decode())
+
+        while traffic == 1:
+            GPIO.output(in1, GPIO.LOW)
+            GPIO.output(in2, GPIO.LOW)
+            traffic = bt_client3.recv(1)
+            traffic = int(traffic.decode())
+            if traffic == 0:
+                break
 
         # 블루투스 서버 연결
         dist = bt_client2.recv(64) # 거리 정보
@@ -68,7 +68,7 @@ def client_program():
         elif dist < 1:
             bt_socket.send('down'.encode())
         else :
-            bt_socket.send('keep'.encode())
+            print("속도 유지")
         #####################################################
 
         # 포미니 주행
