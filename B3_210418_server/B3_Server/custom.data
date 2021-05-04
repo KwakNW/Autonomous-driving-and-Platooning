@@ -1,0 +1,4 @@
+classes =1
+train = train.txt
+names = custom.names 
+backup = backup/
