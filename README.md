@@ -3,6 +3,7 @@
 <h5>사용 언어 및 Tool</h5>
 
 - Python
-- JAVA
-- Android Studio
-- QGIS
+- Raspberry Pi
+- Ubuntu
+- Cuda 10.2
+
